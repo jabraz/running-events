@@ -1,17 +1,17 @@
 import Evento, { IEvento } from "../models/Evento";
 
 export const eventoService = {
-  criar: async (dados: Partial<IEvento>) => {
-    const atleta = new Evento(dados);
-    return atleta.save();
-  },
+    criar: async (dados: Partial<IEvento>) => {
+        const atleta = new Evento(dados);
+        return atleta.save();
+    },
 
-  listar: async () => Evento.find(),
+    listar: async () => Evento.find(),
 
-  buscarPorId: async (id: string) => Evento.findById(id),
+    buscarPorId: async (id: string) => Evento.findById(id),
 
-  atualizar: async (id: string, dados: Partial<IEvento>) =>
-    Evento.findByIdAndUpdate(id, dados, { new: true }),
+    atualizar: async (id: string, dados: Partial<IEvento>) =>
+        Evento.findByIdAndUpdate(id, dados, { new: true }),
 
-  deletar: async (id: string) => Evento.findByIdAndDelete(id),
+    deletar: async (id: string) => Evento.findByIdAndDelete(id),
 };

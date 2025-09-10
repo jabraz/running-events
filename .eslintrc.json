@@ -1,6 +1,6 @@
 {
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
-  "rules": {
-    "prettier/prettier": ["error", { "useTabs": false, "tabWidth": 2 }]
-  }
+    "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+    "rules": {
+        "prettier/prettier": ["error", { "useTabs": false, "tabWidth": 2 }]
+    }
 }

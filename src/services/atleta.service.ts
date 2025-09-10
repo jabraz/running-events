@@ -1,17 +1,18 @@
 import Atleta, { IAtleta } from "../models/Atleta";
+import Usuario from "../models/Usuario";
 
 export const atletaService = {
-  criar: async (dados: Partial<IAtleta>) => {
-    const atleta = new Atleta(dados);
-    return atleta.save();
-  },
+    criar: async (dados: Partial<IAtleta>) => {
+        const atleta = new Atleta(dados);
+        return atleta.save();
+    },
 
-  listar: async () => Atleta.find(),
+    listar: async () => Atleta.find(),
 
-  buscarPorId: async (id: string) => Atleta.findById(id),
+    buscarPorId: async (id: string) => Atleta.findById(id),
 
-  atualizar: async (id: string, dados: Partial<IAtleta>) =>
-    Atleta.findByIdAndUpdate(id, dados, { new: true }),
+    atualizar: async (id: string, dados: Partial<IAtleta>) =>
+        Atleta.findByIdAndUpdate(id, dados, { new: true }),
 
-  deletar: async (id: string) => Atleta.findByIdAndDelete(id),
+    deletar: async (id: string) => Atleta.findByIdAndDelete(id),
 };

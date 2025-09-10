@@ -1,5 +1,10 @@
 import { Router } from "express";
-import { criarAtleta, listarAtletas, deletarAtleta, alterarAtleta } from "../controllers/atleta.controller";
+import {
+    criarAtleta,
+    listarAtletas,
+    deletarAtleta,
+    alterarAtleta,
+} from "../controllers/atleta.controller";
 
 const router = Router();
 

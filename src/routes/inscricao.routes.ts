@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { criarInscricao, deletarInscricao, listarInscricoes } from "../controllers/inscricao.controller";
+import {
+    criarInscricao,
+    deletarInscricao,
+    listarInscricoes,
+} from "../controllers/inscricao.controller";
 
 const router = Router();
 

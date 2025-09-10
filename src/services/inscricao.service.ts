@@ -1,21 +1,21 @@
 import Inscricao, { IInscricao } from "../models/Inscricao";
 
 export const inscricaoService = {
-  criar: async (dados: Partial<IInscricao>) => {
-    const atleta = new Inscricao(dados);
-    return atleta.save();
-  },
+    criar: async (dados: Partial<IInscricao>) => {
+        const atleta = new Inscricao(dados);
+        return atleta.save();
+    },
 
-  listar: async () => Inscricao.find(),
+    listar: async () => Inscricao.find(),
 
-  buscarPorId: async (id: string) => Inscricao.findById(id),
+    buscarPorId: async (id: string) => Inscricao.findById(id),
 
-  atualizar: async (id: string, dados: Partial<IInscricao>) =>
-    Inscricao.findByIdAndUpdate(id, dados, { new: true }),
+    atualizar: async (id: string, dados: Partial<IInscricao>) =>
+        Inscricao.findByIdAndUpdate(id, dados, { new: true }),
 
-  deletar: async (id: string) => Inscricao.findByIdAndDelete(id),
+    deletar: async (id: string) => Inscricao.findByIdAndDelete(id),
 
-  checarInscricao: async (atletaId: string, eventoId: string) => {
-    return Inscricao.findOne({atletaId: atletaId, eventoId: eventoId});
-  }
+    checarInscricao: async (atletaId: string, eventoId: string) => {
+        return Inscricao.findOne({ atletaId: atletaId, eventoId: eventoId });
+    },
 };

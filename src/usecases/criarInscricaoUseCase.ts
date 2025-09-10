@@ -16,7 +16,10 @@ export class CriarInscricaoUseCase {
         }
 
         // Verifica se o atleta já está inscrito neste evento
-        const inscricaoExistente = await inscricaoService.checarInscricao(dados.atletaId, dados.eventoId);
+        const inscricaoExistente = await inscricaoService.checarInscricao(
+            dados.atletaId,
+            dados.eventoId,
+        );
         if (inscricaoExistente) {
             throw new Error("Atleta já está inscrito neste evento");
         }
