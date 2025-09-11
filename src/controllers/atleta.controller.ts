@@ -1,23 +1,13 @@
 import { Request, Response } from "express";
-import { atletaService } from "../services/atleta.service";
-import Usuario from "../models/Usuario";
-import Atleta from "../models/Atleta";
+import { RegistrarAtletaUseCase } from "../usecases/registrarAtletaUseCase";
+import { ListarAtletasUseCase } from "../usecases/listarAtletasUseCase";
+import { RemoverAtletaUseCase } from "../usecases/removerAtletaUseCase";
+import { AlterarAtletaUseCase } from "../usecases/alterarAtletaUseCase";
 
 export const criarAtleta = async (req: Request, res: Response) => {
     try {
-        const { usuarioId } = req.body;
-
-        const usuario = await Usuario.findById(usuarioId);
-        if (!usuario) {
-            throw new Error("Usuário vinculado não existe");
-        }
-
-        const atletaExistente = await Atleta.findOne({ usuarioId });
-        if (atletaExistente) {
-            return res.status(400).json({ error: "Já existe um atleta vinculado a este usuário" });
-        }
-
-        const atleta = await atletaService.criar(req.body);
+        const registrarAtletaUseCase = new RegistrarAtletaUseCase();
+        const atleta = await registrarAtletaUseCase.execute(req.body);
         res.status(201).json(atleta);
     } catch (err: any) {
         res.status(400).json({ error: err.message });
@@ -26,7 +16,8 @@ export const criarAtleta = async (req: Request, res: Response) => {
 
 export const listarAtletas = async (req: Request, res: Response) => {
     try {
-        const atletas = await atletaService.listar();
+        const listarAtletasUseCase = new ListarAtletasUseCase();
+        const atletas = await listarAtletasUseCase.execute();
         res.json(atletas);
     } catch (err: any) {
         res.status(500).json({ error: err.message });
@@ -35,15 +26,9 @@ export const listarAtletas = async (req: Request, res: Response) => {
 
 export const deletarAtleta = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
-
-        const atleta = await atletaService.deletar(id);
-
-        if (!atleta) {
-            return res.status(404).json({ error: "Atleta não encontrado" });
-        }
-
-        res.json({ message: "Atleta deletado com sucesso", atleta });
+        const removerAtletaUseCase = new RemoverAtletaUseCase();
+        const atletaRemovido = await removerAtletaUseCase.execute(req.params);
+        res.json({ message: "Atleta deletado com sucesso", atletaRemovido });
     } catch (err: any) {
         res.status(500).json({ error: err.message });
     }
@@ -51,14 +36,8 @@ export const deletarAtleta = async (req: Request, res: Response) => {
 
 export const alterarAtleta = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
-
-        const atletaAtualizado = await atletaService.atualizar(id, req.body);
-
-        if (!atletaAtualizado) {
-            return res.status(404).json({ error: "Atleta não encontrado" });
-        }
-
+        const alterarAtletaUseCase = new AlterarAtletaUseCase();
+        const atletaAtualizado = await alterarAtletaUseCase.execute(req);
         res.json({ message: "Atleta atualizado com sucesso", atleta: atletaAtualizado });
     } catch (err: any) {
         res.status(500).json({ error: err.message });

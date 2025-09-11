@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { listarUsuarios, deletarUsuario, alterarUsuario } from "../controllers/usuario.controller";
 import { autorizar } from "../middlewares/auth.middleware";
-import { ADMIN, ORGANIZADOR } from "../models/Usuario";
+import { ADMIN, ATLETA, ORGANIZADOR } from "../models/Usuario";
 
 const router = Router();
 

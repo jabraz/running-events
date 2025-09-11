@@ -2,8 +2,8 @@ import Inscricao, { IInscricao } from "../models/Inscricao";
 
 export const inscricaoService = {
     criar: async (dados: Partial<IInscricao>) => {
-        const atleta = new Inscricao(dados);
-        return atleta.save();
+        const inscricao = new Inscricao(dados);
+        return inscricao.save();
     },
 
     listar: async () => Inscricao.find(),

@@ -1,5 +1,4 @@
 import Atleta, { IAtleta } from "../models/Atleta";
-import Usuario from "../models/Usuario";
 
 export const atletaService = {
     criar: async (dados: Partial<IAtleta>) => {

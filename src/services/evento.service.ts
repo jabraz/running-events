@@ -2,8 +2,8 @@ import Evento, { IEvento } from "../models/Evento";
 
 export const eventoService = {
     criar: async (dados: Partial<IEvento>) => {
-        const atleta = new Evento(dados);
-        return atleta.save();
+        const evento = new Evento(dados);
+        return evento.save();
     },
 
     listar: async () => Evento.find(),
