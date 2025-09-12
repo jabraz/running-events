@@ -3,7 +3,7 @@ import { RemoverUsuarioUseCase } from "../usecases/removerUsuarioUseCase";
 import { AlterarUsuarioUseCase } from "../usecases/alterarUsuarioUseCase";
 import { ListarUsuariosUseCase } from "../usecases/listarUsuariosUseCase";
 
-export const listarUsuarios = async (req: Request, res: Response) => {
+export const listarUsuarios = async (_: Request, res: Response) => {
     try {
         const listarUsuariosUseCase = new ListarUsuariosUseCase();
         const usuarios = await listarUsuariosUseCase.execute();

@@ -14,7 +14,7 @@ export const criarAtleta = async (req: Request, res: Response) => {
     }
 };
 
-export const listarAtletas = async (req: Request, res: Response) => {
+export const listarAtletas = async (_: Request, res: Response) => {
     try {
         const listarAtletasUseCase = new ListarAtletasUseCase();
         const atletas = await listarAtletasUseCase.execute();

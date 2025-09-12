@@ -13,7 +13,7 @@ export const criarInscricao = async (req: Request, res: Response) => {
     }
 };
 
-export const listarInscricoes = async (req: Request, res: Response) => {
+export const listarInscricoes = async (_: Request, res: Response) => {
     try {
         const listarInscricoesUseCase = new ListarInscricoesUseCase();
         const inscricoes = await listarInscricoesUseCase.execute();
