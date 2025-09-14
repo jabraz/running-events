@@ -5,20 +5,27 @@ import { ROLES } from "../models/Usuario";
 export class AlterarUsuarioUseCase {
     async execute(dados: any) {
         const { id } = dados.params;
-
-        const { nome, email, senha, role } = dados.body;
+        const { nome, email, senha, roles } = dados.body;
 
         let senhaHash;
-        if (senha) senhaHash = await bcrypt.hash(senha, 10);
+        if (senha) {
+            senhaHash = await bcrypt.hash(senha, 10);
+        }
 
-        if (role && !ROLES.includes(role))
-            throw new Error(`Role inválido. Os válidos são: ${ROLES.join(", ")}`);
+        if (roles) {
+            const invalidos = roles.filter((r: string) => !ROLES.includes(r));
+            if (invalidos.length > 0) {
+                throw new Error(
+                    `Roles inválidos: ${invalidos.join(", ")}. Válidos: ${ROLES.join(", ")}`,
+                );
+            }
+        }
 
         const usuarioAtualizado = await usuarioService.atualizar(id, {
             nome,
             email,
             senha: senhaHash,
-            role,
+            roles,
         });
 
         if (!usuarioAtualizado) {

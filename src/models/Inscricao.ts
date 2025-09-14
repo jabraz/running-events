@@ -5,6 +5,7 @@ export interface IInscricao extends Document {
     eventoId: mongoose.Types.ObjectId;
     categoria: string;
     criadoEm: Date;
+    inExcluido: boolean;
 }
 
 const inscricaoSchema = new Schema<IInscricao>({
@@ -12,6 +13,7 @@ const inscricaoSchema = new Schema<IInscricao>({
     eventoId: { type: Schema.Types.ObjectId, ref: "Evento", required: true },
     categoria: { type: String, required: true },
     criadoEm: { type: Date, default: Date.now },
+    inExcluido: { type: Boolean, default: false },
 });
 
 export default mongoose.model<IInscricao>("Inscricao", inscricaoSchema);

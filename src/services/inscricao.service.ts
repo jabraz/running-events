@@ -10,6 +10,8 @@ export const inscricaoService = {
 
     buscarPorId: async (id: string) => Inscricao.findById(id),
 
+    buscarPorAtletaId: async (atletaId: string) => Inscricao.findOne({ atletaId }),
+
     atualizar: async (id: string, dados: Partial<IInscricao>) =>
         Inscricao.findByIdAndUpdate(id, dados, { new: true }),
 

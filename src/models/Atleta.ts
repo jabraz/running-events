@@ -14,6 +14,7 @@ export interface IAtleta extends Document {
     dataNascimento: Date;
     usuarioId: mongoose.Types.ObjectId;
     criadoEm: Date;
+    inExcluido: boolean;
 }
 
 const atletaSchema = new Schema<IAtleta>({
@@ -28,6 +29,7 @@ const atletaSchema = new Schema<IAtleta>({
     dataNascimento: { type: Date, required: true },
     usuarioId: { type: Schema.Types.ObjectId, ref: "Usuario", required: true },
     criadoEm: { type: Date, default: Date.now },
+    inExcluido: { type: Boolean, default: false },
 });
 
 const Atleta = mongoose.model<IAtleta>("Atleta", atletaSchema);

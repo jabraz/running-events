@@ -25,7 +25,7 @@ export const autenticar = (req: Request, res: Response, next: NextFunction) => {
 export function autorizar(roles: string[]) {
     return (req: Request, res: Response, next: NextFunction) => {
         const usuario = (req as any).usuario as IUsuario;
-        if (!usuario || !roles.includes(usuario.role)) {
+        if (!usuario?.roles?.some((role) => roles.includes(role))) {
             return res.status(403).json({ error: "Acesso negado" });
         }
         next();

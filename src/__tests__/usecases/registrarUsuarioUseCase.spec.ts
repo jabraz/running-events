@@ -6,12 +6,12 @@ jest.mock("../../models/Usuario");
 jest.mock("../../services/usuario.service");
 jest.mock("bcrypt");
 
-describe("RegistrarAtletaUseCase", () => {
+describe("RegistrarUsuarioUseCase", () => {
     const usuarioBodyMock = {
         nome: "José",
         email: "jose@email.com",
         senha: "123456",
-        role: "atleta",
+        roles: ["atleta", "organizador"],
     };
 
     let registrarUsuarioUseCase: RegistrarUsuarioUsecase;

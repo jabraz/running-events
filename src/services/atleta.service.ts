@@ -10,6 +10,8 @@ export const atletaService = {
 
     buscarPorId: async (id: string) => Atleta.findById(id),
 
+    buscarPorUsuarioId: async (usuarioId: string) => Atleta.findOne({ usuarioId }),
+
     atualizar: async (id: string, dados: Partial<IAtleta>) =>
         Atleta.findByIdAndUpdate(id, dados, { new: true }),
 

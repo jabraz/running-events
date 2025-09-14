@@ -11,18 +11,22 @@ export interface IUsuario extends Document {
     nome: string;
     email: string;
     senha: string;
-    role: Role;
+    roles: Role[];
+    criadoEm: Date;
+    inExcluido: boolean;
 }
 
 const usuarioSchema = new Schema<IUsuario>({
     nome: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     senha: { type: String, required: true },
-    role: {
-        type: String,
-        enum: [ATLETA, ORGANIZADOR, ADMIN],
-        default: ATLETA,
+    roles: {
+        type: [String],
+        enum: ROLES,
+        default: [ATLETA],
     },
+    criadoEm: { type: Date, default: Date.now },
+    inExcluido: { type: Boolean, default: false },
 });
 
 export default mongoose.model<IUsuario>("Usuario", usuarioSchema);
